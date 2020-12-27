@@ -3,7 +3,7 @@ import {
   AppBar, CssBaseline, Divider, Drawer, Hidden, IconButton, List, ListItem, ListItemIcon,
   ListItemText, makeStyles, Toolbar, Typography, useTheme, Button, Paper, LinearProgress, Snackbar, SnackbarContent
 } from "@material-ui/core";
-import { Cloud, Menu, ExitToApp, PhotoLibrary, Folder, CloudDownload, Check, Warning, Delete } from "@material-ui/icons";
+import { Cloud, Menu, ExitToApp, Folder, CloudDownload, Check, Warning, Delete } from "@material-ui/icons";
 import { useAuth0 } from '@auth0/auth0-react';
 import Files from './components/Files';
 import SplashScreen from "./components/SplashScreen";
