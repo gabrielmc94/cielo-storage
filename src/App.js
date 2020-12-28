@@ -10,6 +10,13 @@ import SplashScreen from "./components/SplashScreen";
 import { useFileContext } from "./FileContext";
 import UploadDialog from './components/UploadFiles';
 import DeleteDialog from "./components/DeleteDialog";
+import NewFolderDialog from "./components/NewFolderDialog";
+
+// TODO: add new folder
+// TODO: download multiple files
+// TODO: filter just pictures
+// TODO: show thumbnails of images
+
 
 const drawerWidth = 240;
 
@@ -90,7 +97,7 @@ function App() {
           <ListItemText primary={"Photos"} />
         </ListItem> */}
         <Divider />
-        <ListItem button onClick={() => logout({ returnTo: "http://localhost:3000" })}>
+        <ListItem button onClick={() => logout({ returnTo: window.location.origin })}>
           <ListItemIcon><ExitToApp /></ListItemIcon>
           <ListItemText primary={"Log Out"} />
         </ListItem>
@@ -169,6 +176,7 @@ function App() {
         <div style={{ borderBottom: "1px solid #c0c0c0", padding: "12px 15px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ flex: 1 }}>
             <UploadDialog />
+            <NewFolderDialog/>
           </div>
 
           <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>

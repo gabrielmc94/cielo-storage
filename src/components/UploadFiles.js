@@ -1,8 +1,9 @@
 import React, { createRef, useState } from 'react';
 import { Dialog, DialogActions, DialogContent, Typography, Button, makeStyles, IconButton } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
-import { Image, Folder, CloudUpload, InsertDriveFile, Close } from '@material-ui/icons';
+import { CloudUpload, Close } from '@material-ui/icons';
 import { useFileContext } from '../FileContext';
+import { getIcon} from '../util/getIcon';
 
 const useStyles = makeStyles(theme => ({
     emptyUploadArea: {
@@ -55,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const UploadFiles = (props) => {
+const UploadFiles = () => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [uploadFiles, setUploadFiles] = useState([]);
@@ -65,43 +66,6 @@ const UploadFiles = (props) => {
     const close = () => {
         setUploadFiles([]);
         setOpen(false);
-    }
-
-    const getIcon = (file) => {
-        if (file.kind === "prefix") {
-            return <Folder style={{ fontSize: 70, marginBottom: 10, color: "gray" }} />
-        }
-
-        if (file.name.includes(".docx")) {
-            return (
-                <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                    <div style={{ position: "absolute", color: "white", marginTop: 12 }}>.docx</div>
-                    <InsertDriveFile style={{ fontSize: 70, marginBottom: 10 }} color="primary" />
-                </div>
-            )
-        }
-
-        if (file.name.includes(".jpg") || file.name.includes(".jpeg") || file.name.includes(".png")) {
-            return <Image style={{ fontSize: 70, marginBottom: 10, color: "#4bbc4b" }} />
-        }
-
-        if (file.name.includes(".txt")) {
-            return (
-                <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                    <div style={{ position: "absolute", color: "white", marginTop: 12 }}>.txt</div>
-                    <InsertDriveFile style={{ fontSize: 70, marginBottom: 10, color: "gray" }} />
-                </div>
-            )
-        }
-
-        if (file.name.includes(".pdf")) {
-            return (
-                <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                    <div style={{ position: "absolute", color: "white", marginTop: 12 }}>.pdf</div>
-                    <InsertDriveFile style={{ fontSize: 70, marginBottom: 10, color: "#e12828" }} />
-                </div>
-            )
-        }
     }
 
     const handleFilesChange = (e) => {

@@ -83,7 +83,7 @@ const FileCard = (props) => {
     return (
         <Paper
             className={selectedFiles.includes(file.name) ? classes.cardSelected : classes.card}
-            onDoubleClick={() => console.log('TODO: download')}
+            // onDoubleClick={() => console.log('TODO: download')}
             onClick={handleClick}
             elevation={selectedFiles.includes(file.name) ? 3 : 0}
         >

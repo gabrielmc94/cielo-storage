@@ -43,14 +43,15 @@ const FileContextProvider = ({ children }) => {
     const _getFiles = async () => { // TODO: handle errors
         let token = await getAccessTokenSilently();
         setFiles();
+        setSelectedFiles([]);
 
         let url = `/files`;
         if (prefix) {
             url += `?prefix=${prefix}`;
         }
 
-        let apiResponse = await api.get(url, { headers: { authorization: `Bearer ${token}` } });
-        setFiles(apiResponse.data);
+        let res = await api.get(url, { headers: { authorization: `Bearer ${token}` } });
+        setFiles(res.data);
     }
 
     const goBack = () => {
@@ -98,6 +99,8 @@ const FileContextProvider = ({ children }) => {
         document.body.append(link);
         link.click();
         document.body.removeChild(link);
+
+        setSelectedFiles([]);
         return;
     }
 
@@ -140,6 +143,7 @@ const FileContextProvider = ({ children }) => {
                 data: { blobNames: selectedFiles, prefix } 
             });
             setFiles(res.data);
+            setSelectedFiles([]);
             setToast(t => ({ ...t, open: false }));
             setSnackbar({ open: true, variant: "success", message: "Files Deleted Successfully." });
         } catch (err) {
